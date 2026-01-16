@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Jessie Math - 微縮藥劑師 Pro</title>
+
+  <!-- ✅ 快取連結預覽（請放在 <head> 裡） -->
+  <meta name="description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+  <!-- ✅ LINE / FB 預覽用 -->
+  <meta property="og:title" content="Jessie Math - 微縮藥劑師 Pro">
+  <meta property="og:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+  <meta property="og:type" content="website">
+
+  <!-- ✅ 預覽圖片 -->
+  <meta property="og:image" content="g5-u9-2.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1536">
+  <meta property="og:image:alt" content="Jessie Math 遊戲封面">
+
+  <!-- ✅ 有些平台會參考 -->
+  <link rel="image_src" href="g5-u9-2.png">
+
+  <!-- ✅ Twitter / X（可用同一張圖） -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jessie Math - 微縮藥劑師 Pro">
+  <meta name="twitter:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+  <meta name="twitter:image" content="g5-u9-2.png">
+
+  <!-- Font Awesome（footer 羅盤 icon 需要） -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    :root {
+      --primary: #FFD700;
+      --secondary: #6c5ce7;
+      --success: #2ecc71;
+      --danger: #ff7675;
+      --dark: #2d3436;
+      --muted: #636e72;
+      --card: #ffffff;
+      --line: #dfe6e9;
+      --shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    body {
+      margin: 0;
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: #f1f2f6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ===== Jessie Math Hero / Header（依照你提供的截圖） ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+      flex: 0 0 auto;
+    }
+
+    .logo-ring{
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 4px solid #f39c12;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      flex: 0 0 auto;
+    }
+    .logo-ring img{
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-text {
+      font-weight: 900;
+      font-size: 1.9rem;
+      color: var(--dark);
+      letter-spacing: .2px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .top-nav{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex: 1 1 auto;
+      min-width: 220px;
+    }
+
+    .nav-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--dark);
+      background: #fff;
+      border: 1.6px solid #dcdde1;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 900;
+      font-size: 0.98rem;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.03);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      white-space: nowrap;
+    }
+    .nav-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 22px rgba(0,0,0,0.06);
+      border-color: rgba(108,92,231,.35);
+    }
+    .nav-btn:active{ transform: scale(0.98); }
+
+    .nav-btn .icon{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #f6f7fb;
+      font-size: 16px;
+    }
+
+    .nav-btn.accent{
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+    }
+    .nav-btn.accent .icon{
+      background: rgba(108,92,231,.10);
+    }
+
+    /* ===== RWD：手機 / 平板 / 電腦比例 ===== */
+    @media (max-width: 520px){
+      header{ padding: 12px 12px; }
+      .brand-text{ font-size: 1.55rem; }
+      .logo-ring{ width: 48px; height: 48px; border-width: 4px; }
+      .logo-ring img{ width: 36px; height: 36px; }
+      .nav-btn{ padding: 9px 12px; font-size: 0.95rem; }
+    }
+    @media (min-width: 768px){
+      #game-board{ max-width: 720px; }
+    }
+    @media (min-width: 1024px){
+      #game-board{ max-width: 760px; }
+    }
+
+    /* ===== 第一頁：開始任務（強制輸入名字 + 規則 + 計時/計分） ===== */
+    #start-screen{
+      flex: 1;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 26px 16px 10px;
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 110px; /* ✅ 預留底部 footer 空間（不影響原本置中感） */
+    }
+    #start-screen.show{ display: flex; }
+
+    .start-bg{
+      position:absolute;
+      inset:-40px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(108,92,231,.12), transparent 55%),
+        radial-gradient(circle at 75% 40%, rgba(255,215,0,.14), transparent 55%),
+        radial-gradient(circle at 50% 80%, rgba(46,204,113,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    .start-card{
+      width: min(920px, 100%);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.10);
+      padding: 24px 22px 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .start-title{
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--dark);
+      letter-spacing: .2px;
+      margin: 2px 0 8px;
+    }
+    .start-sub{
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.5;
+      margin: 0 0 14px;
+    }
+
+    .start-box{
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 16px;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.06);
+    }
+    .box-title{
+      font-weight: 900;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .box-list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--dark);
+      font-weight: 800;
+      line-height: 1.75;
+    }
+
+    .start-input{
+      margin-top: 16px;
+      width: 100%;
+      border: 1.8px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 14px;
+      font-weight: 900;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .start-input:focus{
+      border-color: rgba(108,92,231,.5);
+      box-shadow: 0 0 0 4px rgba(108,92,231,.10);
+    }
+
+    .start-actions{
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ghost-btn{
+      border: 1.8px solid var(--line);
+      background: #fff;
+      color: var(--dark);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 900;
+      cursor: pointer;
+      min-width: 140px;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.05);
+    }
+    .ghost-btn:active{ transform: scale(0.98); }
+
+    .primary-btn{
+      border: none;
+      background: #2f6df6;
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-weight: 900;
+      cursor: pointer;
+      min-width: 140px;
+      box-shadow: 0 14px 26px rgba(47,109,246,.24);
+      opacity: .6;
+    }
+    .primary-btn.enabled{ opacity: 1; }
+    .primary-btn:active{ transform: scale(0.98); }
+
+    .start-tip{
+      text-align: center;
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    @media (max-width: 520px){
+      .start-card{ padding: 18px 14px 16px; }
+      .start-title{ font-size: 1.35rem; }
+      .start-actions{ gap: 10px; }
+      .ghost-btn, .primary-btn{ width: 100%; }
+    }
+
+    /* ✅ 第一頁 footer 置底（不動原版面，只是加上去） */
+    .start-footer{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      pointer-events: none; /* 只顯示不擋點擊 */
+    }
+    .start-footer .footer-pill{
+      pointer-events: auto;
+    }
+
+    /* ===== 第二頁：遊戲區（維持原樣） ===== */
+    #game-screen{ display: none; }
+    #game-screen.show{ display: block; }
+
+    #game-board {
+      flex: 1;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .status-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-weight: bold;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .badge {
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+      border-radius: 999px;
+      padding: 8px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    /* 新增：控制按鈕（暫停 / 重來 / 排行榜） */
+    .ctrl-wrap{
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+    .ctrl-btn{
+      border: 1.6px solid #dcdde1;
+      background: #fff;
+      color: var(--dark);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.03);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .ctrl-btn:active{ transform: scale(0.98); }
+    .ctrl-btn.primary{
+      border-color: rgba(108,92,231,.35);
+    }
+
+    #bubble {
+      background: white;
+      padding: 16px 16px;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      border-left: 8px solid var(--primary);
+    }
+
+    #bubble small{
+      display:block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    #target-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 200px;
+      margin-bottom: 6px;
+    }
+
+    #item-emoji {
+      font-size: 100px;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+      transform-origin: center;
+    }
+
+    .measure-tag {
+      margin-top: 14px;
+      background: var(--dark);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: .5px;
+      text-align: center;
+    }
+
+    .panel-row{
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 10px 0 12px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+    }
+
+    .panel-title{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: 900;
+      color: var(--dark);
+    }
+
+    .pill{
+      font-size: 12px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .hint-line{
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .shelf-label { align-self: flex-start; margin: 6px 0 10px; font-weight: bold; color: var(--muted); }
+    #potions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+
+    .potion-btn {
+      background: white;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 5px;
+      cursor: pointer;
+      transition: all 0.18s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .potion-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(108,92,231,.35);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.06);
+    }
+
+    .potion-btn:active { transform: scale(0.96); }
+
+    .potion-btn[aria-disabled="true"]{
+      opacity: .5;
+      filter: grayscale(.2);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .cooldown-bar{
+      position:absolute;
+      left:0; bottom:0;
+      height:4px;
+      width:0%;
+      background: var(--secondary);
+      transition: width .15s linear;
+    }
+
+    .liquid {
+      width: 30px; height: 40px;
+      border-radius: 6px 6px 12px 12px;
+      margin-bottom: 8px;
+      border: 2px solid var(--dark);
+    }
+
+    .color-1-2 { background: #ff7675; }
+    .color-1-3 { background: #74b9ff; }
+    .color-1-4 { background: #55efc4; }
+    .color-1-5 { background: #a29bfe; }
+    .color-1-6 { background: #fab1a0; }
+    .color-1-8 { background: #ffeaa7; }
+    .color-1-10 { background: #fd79a8; }
+    .color-2-3 { background: #81ecec; }
+    .color-3-4 { background: #fdcb6e; }
+    .color-3-5 { background: #00b894; }
+
+    .answer-row{
+      width: 100%;
+      display: none;
+      gap: 10px;
+      align-items: center;
+      margin: 8px 0 10px;
+    }
+    .answer-row.show{ display:flex; }
+
+    .answer-input{
+      flex: 1;
+      background: white;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-size: 16px;
+      font-weight: 900;
+      outline: none;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.05);
+    }
+    .answer-input:focus{
+      border-color: rgba(108,92,231,.5);
+    }
+    .submit-btn{
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(108,92,231,.25);
+      white-space: nowrap;
+    }
+    .submit-btn:active{ transform: scale(0.98); }
+
+    @media (max-width: 400px) {
+      #potions { grid-template-columns: repeat(3, 1fr); }
+      #item-emoji { font-size: 80px; }
+    }
+
+    /* ===== Footer（原樣結構） ===== */
+    footer{
+      padding: 14px 16px 18px;
+      display: flex;
+      justify-content: center;
+    }
+    .footer-pill{
+      width: min(980px, 100%);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+      border-radius: 999px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer-left, .footer-right{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 240px;
+    }
+    .footer-dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(255,215,0,0.22);
+      flex: 0 0 auto;
+    }
+    .footer-copy{
+      font-weight: 900;
+      color: var(--dark);
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+    .footer-icon{
+      width: 28px; height: 28px;
+      border-radius: 999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(108,92,231,.10);
+      color: var(--secondary);
+      flex: 0 0 auto;
+    }
+    .footer-tagline{
+      font-weight: 900;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+    @media (max-width: 520px){
+      .footer-pill{ border-radius: 22px; }
+      .footer-left, .footer-right{ min-width: 0; }
+    }
+
+    /* ===== 新增：排行榜 Modal（不動原版面，額外疊上去） ===== */
+    .modal-mask{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 18px;
+    }
+    .modal-mask.show{ display: flex; }
+
+    .modal{
+      width: min(560px, 100%);
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.18);
+      padding: 16px 16px 14px;
+    }
+    .modal-head{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-title{
+      font-weight: 900;
+      color: var(--dark);
+      font-size: 1.1rem;
+    }
+    .modal-close{
+      border: 1.6px solid #dcdde1;
+      background: #fff;
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .rank-list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .rank-item{
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.04);
+    }
+    .rank-left{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .rank-no{
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(108,92,231,.10);
+      color: var(--secondary);
+      font-weight: 900;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .rank-name{
+      font-weight: 900;
+      color: var(--dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 250px;
+    }
+    .rank-right{
+      font-weight: 900;
+      color: var(--dark);
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+    .rank-pill{
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      border-radius: 999px;
+      padding: 5px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    /* ===== 新增：暫停遮罩 ===== */
+    .pause-mask{
+      position: fixed;
+      inset: 0;
+      background: rgba(241,242,246,0.72);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 45;
+      padding: 18px;
+    }
+    .pause-mask.show{ display:flex; }
+
+    .pause-card{
+      width: min(520px, 100%);
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.14);
+      padding: 18px 16px 14px;
+      text-align: center;
+    }
+    .pause-title{
+      font-weight: 900;
+      color: var(--dark);
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .pause-sub{
+      font-weight: 900;
+      color: var(--muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .resume-btn{
+      border: none;
+      background: var(--secondary);
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 14px 26px rgba(108,92,231,.22);
+    }
+    .resume-btn:active{ transform: scale(0.98); }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo-ring">
+      <img src="JESSIEMATH-Q.png" alt="Jessie Math Logo">
+    </div>
+    <div class="brand-text">Jessie Math</div>
+  </div>
+
+  <nav class="top-nav">
+    <a class="nav-btn" href="https://jessiemath0703-chu.github.io/website2/">
+      <span class="icon">🏠</span><span>首頁</span>
+    </a>
+    <a class="nav-btn" href="https://jessiemath0703-chu.github.io/Game-Lobby/">
+      <span class="icon">🎮</span><span>遊戲大廳</span>
+    </a>
+    <a class="nav-btn accent" href="https://jessiemath0703-chu.github.io/Game-Lobby/#g5-u9">
+      <span class="icon">↩️</span><span>五年級乘以幾分之一</span>
+    </a>
+  </nav>
+</header>
+
+<!-- 第一頁：開始任務（強制輸入名字 + 規則 + 計時/計分） -->
+<section id="start-screen">
+  <div class="start-bg" aria-hidden="true"></div>
+
+  <div class="start-card">
+    <div class="start-title">開始任務</div>
+    <div class="start-sub">先輸入名字（必填）再出發。進入後會開始倒數 60 秒並計分，時間到自動結算。</div>
+
+    <div class="start-box">
+      <div class="box-title">遊戲規則（計時 / 計分）</div>
+      <ul class="box-list">
+        <li>每局時間：倒數 60 秒，時間到就結算並寫入排行榜。</li>
+        <li>計分方式：答對加分；越快答對會有速度加成。</li>
+        <li>能量規則：每次操作消耗 1 能量；能量用完需重新整理再玩。</li>
+        <li>排行榜：同一台裝置會保留前 10 名（滿意度 = 分數）。</li>
+      </ul>
+    </div>
+
+    <input id="playerNameInput" class="start-input" placeholder="請輸入操作員代號（必填）" maxlength="12" autocomplete="name">
+
+    <div class="start-actions">
+      <button id="randomBtn" class="ghost-btn" type="button">隨機代號</button>
+      <button id="startBtn" class="primary-btn" type="button">進入工作站</button>
+    </div>
+
+    <div class="start-tip">小提示：先把名字輸入好，不然任務不放行 ✨</div>
+  </div>
+
+  <!-- ✅ 第一頁也要有 footer（你指定的內容原樣加入） -->
+  <footer class="start-footer">
+    <div class="footer-pill">
+      <div class="footer-left">
+        <div class="footer-dot" aria-hidden="true"></div>
+        <div class="footer-copy">© 2025–2026 Jessie Math 捷析老師. All rights reserved.</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-icon" aria-hidden="true"><i class="fas fa-compass"></i></div>
+        <div class="footer-tagline">數學不迷路，Jessie 帶你走向理解。</div>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<!-- 第二頁：遊戲區（維持原樣） -->
+<section id="game-screen">
+  <div id="game-board">
+    <div class="status-bar">
+      <span class="badge">🏆 滿意度：<span id="score">0</span></span>
+      <span class="badge">🧪 等級：<span id="level-name">初級藥劑師</span></span>
+      <span class="badge">⚡ 能量：<span id="energy">12</span></span>
+      <span class="badge">⏳ 倒數：<span id="timer">60</span>s</span>
+
+      <span class="ctrl-wrap">
+        <button class="ctrl-btn primary" id="rankBtn" type="button">🏅 排行榜</button>
+        <button class="ctrl-btn" id="pauseBtn" type="button">⏸️ 暫停</button>
+        <button class="ctrl-btn" id="restartBtn" type="button">🔄 重來</button>
+      </span>
+    </div>
+
+    <div id="bubble">
+      <strong id="npc-name">🐿️ 松鼠：</strong>
+      <span id="npc-speech">載入中...</span>
+      <small id="mission-meta">—</small>
+    </div>
+
+    <div id="target-stage">
+      <div id="item-emoji">📦</div>
+      <div class="measure-tag" id="current-val">?</div>
+    </div>
+
+    <div class="panel-row">
+      <div class="panel">
+        <div class="panel-title">
+          <span>🎯 任務目標</span>
+          <span class="pill" id="mode-pill">模式：直接縮小</span>
+        </div>
+        <div class="hint-line" id="goal-line">—</div>
+        <div class="hint-line" id="rule-line" style="margin-top:6px;">—</div>
+      </div>
+    </div>
+
+    <div class="answer-row" id="answer-row">
+      <input id="answer-input" class="answer-input" inputmode="decimal" placeholder="輸入縮小後的數值（例如 6 或 2/5）">
+      <button class="submit-btn" id="submit-btn">送出答案</button>
+    </div>
+
+    <div class="shelf-label">選擇縮小藥劑：</div>
+    <div id="potions"></div>
+  </div>
+
+  <footer>
+    <div class="footer-pill">
+      <div class="footer-left">
+        <div class="footer-dot" aria-hidden="true"></div>
+        <div class="footer-copy">© 2025–2026 Jessie Math 捷析老師. All rights reserved.</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-icon" aria-hidden="true"><i class="fas fa-compass"></i></div>
+        <div class="footer-tagline">數學不迷路，Jessie 帶你走向理解。</div>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<!-- 暫停遮罩 -->
+<div class="pause-mask" id="pauseMask" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="pause-card">
+    <div class="pause-title">⏸️ 已暫停</div>
+    <div class="pause-sub">倒數計時已停止，喝口水再回來也行。</div>
+    <button class="resume-btn" id="resumeBtn" type="button">繼續</button>
+  </div>
+</div>
+
+<!-- 排行榜 Modal -->
+<div class="modal-mask" id="rankMask" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">🏅 排行榜（本機前 10 名）</div>
+      <button class="modal-close" id="rankClose" type="button">關閉</button>
+    </div>
+    <ul class="rank-list" id="rankList"></ul>
+  </div>
+</div>
+
+<script>
+  function gcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ [a,b]=[b,a%b]; } return a; }
+  function frac(n,d){
+    if(d===0) return {n:0,d:1};
+    const sign = (n*d)<0 ? -1 : 1;
+    n=Math.abs(n); d=Math.abs(d);
+    const g=gcd(n,d);
+    return {n:sign*(n/g), d:(d/g)};
+  }
+  function mulF(a,b){ return frac(a.n*b.n, a.d*b.d); }
+  function eqF(a,b){ return a.n===b.n && a.d===b.d; }
+  function toLabelF(a){ return a.d===1 ? String(a.n) : `${a.n}/${a.d}`; }
+  function toNumF(a){ return a.n / a.d; }
+
+  function parseInputToFrac(raw){
+    const s = (raw||"").trim();
+    if(!s) return null;
+
+    const m = s.match(/^(-?\d+)\s*\/\s*(-?\d+)$/);
+    if(m){
+      const n = parseInt(m[1],10);
+      const d = parseInt(m[2],10);
+      if(d === 0) return null;
+      return frac(n,d);
+    }
+
+    if(!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const num = Number(s);
+    if(!isFinite(num)) return null;
+
+    const parts = s.split(".");
+    if(parts.length === 1) return frac(parseInt(parts[0],10), 1);
+
+    const decimals = parts[1].length;
+    const scale = Math.pow(10, decimals);
+    const n = Math.round(num * scale);
+    return frac(n, scale);
+  }
+
+  const Difficulty = {
+    getTier(score){
+      if(score >= 140) return 5;
+      if(score >= 120) return 4;
+      if(score >= 70)  return 3;
+      if(score >= 30)  return 2;
+      return 1;
+    },
+    tierName(t){
+      return t===1?"新手林":t===2?"進階溪谷":t===3?"智者樹冠":t===4?"大師樹冠":"史詩樹冠";
+    }
+  };
+
+  const potionTypes = [
+    { f: frac(1,2),  l: "1/2",  c: "color-1-2" },
+    { f: frac(1,3),  l: "1/3",  c: "color-1-3" },
+    { f: frac(1,4),  l: "1/4",  c: "color-1-4" },
+    { f: frac(1,5),  l: "1/5",  c: "color-1-5" },
+    { f: frac(1,6),  l: "1/6",  c: "color-1-6" },
+    { f: frac(1,8),  l: "1/8",  c: "color-1-8" },
+    { f: frac(1,10), l: "1/10", c: "color-1-10" },
+
+    { f: frac(2,3),  l: "2/3",  c: "color-2-3", lockedUntil: 3 },
+    { f: frac(3,4),  l: "3/4",  c: "color-3-4", lockedUntil: 4 },
+    { f: frac(3,5),  l: "3/5",  c: "color-3-5", lockedUntil: 4 }
+  ];
+
+  const missionLibrary = [
+    { npc:"🐻 熊大大", item:"🍰", baseF: frac(40,1), unit:"kg", mode:"DIRECT", targetF: frac(1,8) },
+    { npc:"🐰 小兔", item:"🥕", baseF: frac(20,1), unit:"cm", mode:"DIRECT", targetF: frac(1,5) },
+    { npc:"🦋 蝴蝶", item:"💧", baseF: frac(1,2), unit:"ml", mode:"DIRECT", targetF: frac(1,2) },
+    { npc:"🐜 螞蟻", item:"🪵", baseF: frac(30,1), unit:"cm", mode:"DIRECT", targetF: frac(1,10) },
+    { npc:"🐢 烏龜", item:"🥬", baseF: frac(12,1), unit:"cm²", mode:"DIRECT", targetF: frac(1,3) },
+    { npc:"🐝 蜜蜂", item:"🌸", baseF: frac(2,3), unit:"ml", mode:"DIRECT", targetF: frac(1,2) },
+    { npc:"🦉 貓頭鷹", item:"📜", baseF: frac(42,1), unit:"cm", mode:"DIRECT", targetF: frac(1,6) },
+    { npc:"🐿️ 松鼠", item:"🥜", baseF: frac(15,1), unit:"g", mode:"DIRECT", targetF: frac(1,3) },
+
+    { npc:"🦊 狐狸", item:"🧺", baseF: frac(24,1), unit:"kg", mode:"FIND_POTION", targetF: frac(1,4), goalF: frac(6,1) },
+    { npc:"🐘 小象", item:"🍉", baseF: frac(36,1), unit:"kg", mode:"FIND_POTION", targetF: frac(1,3), goalF: frac(12,1) },
+
+    { npc:"🦝 浣熊", item:"📦", baseF: frac(48,1), unit:"cm", mode:"CHAIN2", targetF: mulF(frac(1,2), frac(1,4)) },
+    { npc:"🐸 青蛙", item:"🍪", baseF: frac(30,1), unit:"g", mode:"FIX_ONE", targetF: frac(1,5), wrongF: frac(1,3) },
+
+    { npc:"🦔 刺蝟", item:"🍓", baseF: frac(24,1), unit:"g", mode:"ASK_RESULT", factorF: frac(1,4) },
+    { npc:"🐟 小魚", item:"🫧", baseF: frac(3,2), unit:"ml", mode:"ASK_RESULT", factorF: frac(2,3) },
+    { npc:"🦜 鸚鵡", item:"🪶", baseF: frac(20,1), unit:"cm", mode:"ASK_RESULT", factorF: frac(1,5) }
+  ];
+
+  const AskStyles = {
+    base: [
+      (m,base)=>`我手上有「${base}${m.unit}」的 ${m.item}。`,
+      (m,base)=>`${m.item} 的原始大小是 ${base}${m.unit}。`,
+      (m,base)=>`欸我這個 ${m.item} 一開始是 ${base}${m.unit}。`,
+      (m,base)=>`請先記住：${base}${m.unit}（這是原始值）。`,
+      (m,base)=>`【素材登記】${m.item}：${base}${m.unit}。`
+    ],
+    goal_direct: [
+      (m)=>`我我要它變成「原本的 ${toLabelF(m.targetF)}」。`,
+      (m)=>`縮到 ${toLabelF(m.targetF)} 倍就行。`,
+      (m)=>`請把它縮小到 ${toLabelF(m.targetF)}。`,
+      (m)=>`我只要拿走其中的 ${toLabelF(m.targetF)}。`,
+      (m)=>`把它變成「${toLabelF(m.targetF)} 份中的 1 份」那種感覺。`
+    ],
+    goal_find: [
+      (m,goal)=>`我想要最後變成 ${goal}${m.unit}，你幫我挑倍率。`,
+      (m,goal)=>`目標：${goal}${m.unit}。要用哪一瓶？`,
+      (m,goal)=>`把 ${m.item} 變到 ${goal}${m.unit}，拜託就靠你了。`,
+      (m,goal)=>`我只需要 ${goal}${m.unit}，其餘都先別帶走。`,
+      (m,goal)=>`最後要落在 ${goal}${m.unit}（精準到剛好）。`
+    ],
+    chain: [
+      ()=>`這單要連噴兩次，兩次倍率相乘才算數。`,
+      ()=>`注意：不能一次到位，必須分兩步完成。`,
+      ()=>`先噴一次，再噴一次，像疊 buff 那樣。`,
+      ()=>`兩段縮小，別急，慢慢來。`
+    ],
+    fix: [
+      (m)=>`我已經先縮成 ${toLabelF(m.wrongF)} 了，但我真正要的是 ${toLabelF(m.targetF)}。`,
+      (m)=>`目前倍率卡在 ${toLabelF(m.wrongF)}，你用一瓶把它修到 ${toLabelF(m.targetF)}。`,
+      (m)=>`救命！先噴錯了…現在是 ${toLabelF(m.wrongF)}，目標 ${toLabelF(m.targetF)}。`
+    ],
+    altMath: [
+      (m)=>`換句話說，我只要「${Math.round(toNumF(m.targetF)*100)}%」那麼多。`,
+      (m)=>`也可以想成：縮放比例 ${toLabelF(m.targetF)}。`
+    ],
+    ask_result: [
+      (m,base)=>`我已經決定用 ${toLabelF(m.factorF)} 這瓶了，現在要你算「縮小後」是多少。`,
+      (m,base)=>`倍率給你：${toLabelF(m.factorF)}。請直接回我最後的數值（帶單位）。`,
+      (m,base)=>`我不問你選哪瓶，我只想知道：${base}${m.unit} × ${toLabelF(m.factorF)} = ？`,
+      (m,base)=>`這題走純算術：把 ${base}${m.unit} 乘上 ${toLabelF(m.factorF)}，答案是多少？`
+    ]
+  };
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  let score = 0;
+  let energy = 12;
+  let currentMission = null;
+  let chainState = null;
+  let cooldown = new Map();
+  let cooldownTimer = null;
+
+  let missionStartTs = 0;
+
+  const ROUND_SECONDS = 60;
+  let roundLeft = ROUND_SECONDS;
+  let roundTimer = null;
+
+  let isPaused = false;
+
+  function getTier(){ return Difficulty.getTier(score); }
+
+  function visiblePotions(){
+    const tier = getTier();
+    return potionTypes.filter(p => !p.lockedUntil || p.lockedUntil <= tier);
+  }
+
+  function setLevelName(){
+    const tier = getTier();
+    const name = tier===1 ? "初級藥劑師" :
+                 tier===2 ? "中級藥劑師" :
+                 tier===3 ? "資深藥劑師" :
+                 tier===4 ? "大魔法藥劑師" : "精靈御用藥劑師";
+    document.getElementById('level-name').innerText = name;
+  }
+
+  function renderPotions() {
+    const shelf = document.getElementById('potions');
+    shelf.innerHTML = '';
+    const pots = visiblePotions();
+
+    pots.forEach(p => {
+      const btn = document.createElement('div');
+      btn.className = 'potion-btn';
+      btn.setAttribute('data-label', p.l);
+      btn.onclick = () => usePotion(p);
+
+      const cdBar = document.createElement('div');
+      cdBar.className = 'cooldown-bar';
+
+      btn.innerHTML = `
+        <div class="liquid ${p.c}"></div>
+        <div style="font-size:12px; font-weight:900">${p.l}</div>
+      `;
+      btn.appendChild(cdBar);
+      shelf.appendChild(btn);
+    });
+
+    syncCooldownUI();
+  }
+
+  function syncCooldownUI(){
+    const tier = getTier();
+    document.querySelectorAll('.potion-btn').forEach(btn => {
+      const label = btn.getAttribute('data-label');
+      const remain = cooldown.get(label) || 0;
+
+      const shouldDisable = isPaused || (tier >= 4 && remain > 0);
+      btn.setAttribute('aria-disabled', shouldDisable ? "true" : "false");
+
+      const bar = btn.querySelector('.cooldown-bar');
+      if(!bar) return;
+
+      if(tier >= 4 && remain > 0 && !isPaused){
+        const pct = Math.max(0, Math.min(100, (remain / 1200) * 100));
+        bar.style.width = pct + "%";
+      } else bar.style.width = "0%";
+    });
+
+    const input = document.getElementById('answer-input');
+    const submit = document.getElementById('submit-btn');
+    if(input && submit){
+      input.disabled = isPaused;
+      submit.disabled = isPaused;
+      submit.style.opacity = isPaused ? .6 : 1;
+      input.style.opacity = isPaused ? .75 : 1;
+    }
+  }
+
+  function startCooldownTicker(){
+    if(cooldownTimer) return;
+    cooldownTimer = setInterval(() => {
+      if(isPaused) return;
+      let changed = false;
+      for(const [k, v] of cooldown.entries()){
+        const nv = Math.max(0, v - 100);
+        if(nv === 0) cooldown.delete(k);
+        else cooldown.set(k, nv);
+        changed = true;
+      }
+      if(changed) syncCooldownUI();
+    }, 100);
+  }
+
+  function buildQuestionText(m){
+    const baseLabel = toLabelF(m.baseF);
+    const baseLine = pick(AskStyles.base)(m, baseLabel);
+
+    if(m.mode === "ASK_RESULT"){
+      const ask = pick(AskStyles.ask_result)(m, baseLabel);
+      return `${baseLine} ${ask}`.replace(/\s+/g,' ').trim();
+    }
+
+    if(m.mode === "DIRECT"){
+      let t = `${baseLine} ${pick(AskStyles.goal_direct)(m)}`;
+      if(getTier() >= 3 && Math.random()<0.55) t += " " + pick(AskStyles.altMath)(m);
+      return t.trim();
+    }
+
+    if(m.mode === "FIND_POTION"){
+      const goalLabel = toLabelF(m.goalF);
+      return `${baseLine} ${pick(AskStyles.goal_find)(m, goalLabel)}`.trim();
+    }
+
+    if(m.mode === "CHAIN2"){
+      return `${baseLine} ${pick(AskStyles.chain)()}`.trim();
+    }
+
+    if(m.mode === "FIX_ONE"){
+      return `${baseLine} ${pick(AskStyles.fix)(m)}`.trim();
+    }
+
+    return `${baseLine}`.trim();
+  }
+
+  function pickMission(){
+    const tier = getTier();
+    const allowModes =
+      tier===1 ? ["DIRECT","ASK_RESULT"] :
+      tier===2 ? ["DIRECT","CHAIN2","ASK_RESULT"] :
+      tier===3 ? ["DIRECT","CHAIN2","FIND_POTION","ASK_RESULT"] :
+      tier===4 ? ["DIRECT","CHAIN2","FIND_POTION","FIX_ONE","ASK_RESULT"] :
+                ["DIRECT","CHAIN2","FIND_POTION","FIX_ONE","ASK_RESULT"];
+
+    const candidates = missionLibrary.filter(m => allowModes.includes(m.mode));
+    let next;
+    do { next = candidates[Math.floor(Math.random() * candidates.length)]; }
+    while (next === currentMission && candidates.length > 1);
+    return next;
+  }
+
+  function updateEnergyUI(){ document.getElementById('energy').innerText = energy; }
+
+  function spendEnergy(){
+    energy = Math.max(0, energy - 1);
+    updateEnergyUI();
+    if(energy <= 0) setTimeout(lockGameOver, 350);
+  }
+
+  function lockGameOver(){
+    const label = document.getElementById('current-val');
+    const emoji = document.getElementById('item-emoji');
+    label.innerText = "⚡ 能量用完啦！重新整理可再玩一次";
+    label.style.background = "#2d3436";
+    emoji.style.transform = "scale(1)";
+    document.querySelectorAll('.potion-btn').forEach(btn=>{
+      btn.setAttribute('aria-disabled', "true");
+      btn.onclick = null;
+    });
+    document.getElementById('answer-row').classList.remove('show');
+  }
+
+  function expectedFactorForMission(m){
+    if(m.mode === "DIRECT") return m.targetF;
+    if(m.mode === "FIND_POTION") return m.targetF;
+    if(m.mode === "CHAIN2") return m.targetF;
+    if(m.mode === "FIX_ONE"){
+      return frac(m.targetF.n * m.wrongF.d, m.targetF.d * m.wrongF.n);
+    }
+    return frac(1,1);
+  }
+
+  function expectedResultForAskResult(m){
+    return mulF(m.baseF, m.factorF);
+  }
+
+  function showAnswerRow(show){
+    const row = document.getElementById('answer-row');
+    const input = document.getElementById('answer-input');
+    if(show){
+      row.classList.add('show');
+      input.value = "";
+      if(!isPaused) input.focus();
+    } else {
+      row.classList.remove('show');
+    }
+  }
+
+  function speedBonus(){
+    const elapsed = Math.max(0, Date.now() - missionStartTs);
+    if(elapsed <= 4000) return 4;
+    if(elapsed <= 8000) return 2;
+    return 0;
+  }
+
+  function newMission() {
+    if(energy <= 0){ lockGameOver(); return; }
+    if(roundLeft <= 0){ endRound(); return; }
+
+    chainState = null;
+    currentMission = pickMission();
+
+    missionStartTs = Date.now();
+
+    const tier = getTier();
+
+    document.getElementById('npc-name').innerText = currentMission.npc + "：";
+    document.getElementById('npc-speech').innerText = buildQuestionText(currentMission);
+
+    document.getElementById('item-emoji').innerText = currentMission.item;
+    document.getElementById('item-emoji').style.transform = "scale(1)";
+
+    const baseLabel = toLabelF(currentMission.baseF);
+    document.getElementById('current-val').innerText = `${baseLabel}${currentMission.unit}`;
+    document.getElementById('current-val').style.background = "#2d3436";
+
+    const modePill = document.getElementById('mode-pill');
+    const goalLine = document.getElementById('goal-line');
+    const ruleLine = document.getElementById('rule-line');
+    const meta = document.getElementById('mission-meta');
+
+    const playerName = (localStorage.getItem("JM_PLAYER_NAME") || "").trim();
+    const nameTag = playerName ? `｜👤 ${playerName}` : "";
+    meta.innerText = `🌿 區域：${Difficulty.tierName(tier)}　｜　⚡ 每次操作消耗 1 能量 ${nameTag}`;
+
+    if(currentMission.mode === "ASK_RESULT"){
+      modePill.innerText = "模式：算出縮小後的數值";
+      goalLine.innerText = `已指定倍率 ${toLabelF(currentMission.factorF)}，請直接算「縮小後是多少」。`;
+      ruleLine.innerText = `可輸入整數/小數，或分數 a/b（例如 6、0.4、2/5）。`;
+      showAnswerRow(true);
+    } else {
+      showAnswerRow(false);
+
+      if(currentMission.mode === "DIRECT"){
+        modePill.innerText = "模式：直接縮小";
+        goalLine.innerText = `任務：選出正確倍率，讓「基底 × 倍率」符合委託。`;
+        ruleLine.innerText = `提示：他說「只要其中的 1/4」，倍率就是 1/4。`;
+      } else if(currentMission.mode === "FIND_POTION"){
+        modePill.innerText = "模式：找出正確藥劑";
+        const goalLabel = toLabelF(currentMission.goalF);
+        goalLine.innerText = `目標：最後變成 ${goalLabel}${currentMission.unit}。`;
+        ruleLine.innerText = `你要選倍率，讓 ${baseLabel} → ${goalLabel}。`;
+      } else if(currentMission.mode === "CHAIN2"){
+        modePill.innerText = "模式：連鎖縮小（兩次）";
+        chainState = { stepsLeft: 2, currentFactorF: frac(1,1) };
+        goalLine.innerText = `必須連噴兩次，兩次倍率相乘要等於目標總倍率。`;
+        ruleLine.innerText = `目前進度：第 1 次（剩 ${chainState.stepsLeft} 次）`;
+      } else if(currentMission.mode === "FIX_ONE"){
+        modePill.innerText = "模式：救援修正（再噴一次）";
+        goalLine.innerText = `目前倍率：${toLabelF(currentMission.wrongF)}，目標倍率：${toLabelF(currentMission.targetF)}。`;
+        ruleLine.innerText = `選一瓶修正倍率，讓：${toLabelF(currentMission.wrongF)} × (修正) = ${toLabelF(currentMission.targetF)}。`;
+        document.getElementById('current-val').innerText = `🧩 目前倍率：${toLabelF(currentMission.wrongF)}（再噴一次）`;
+      }
+    }
+
+    renderPotions();
+    setLevelName();
+    updateEnergyUI();
+    syncCooldownUI();
+  }
+
+  function submitResultAnswer(){
+    if(isPaused) return;
+    if(!currentMission || currentMission.mode !== "ASK_RESULT") return;
+
+    const raw = document.getElementById('answer-input').value;
+    const userF = parseInputToFrac(raw);
+
+    const label = document.getElementById('current-val');
+    if(!userF){
+      label.innerText = "❌ 格式怪怪的（可輸入 6、0.4、2/5）";
+      label.style.background = "#ff7675";
+      return;
+    }
+
+    spendEnergy();
+
+    const expected = expectedResultForAskResult(currentMission);
+    const ok = eqF(userF, expected);
+
+    if(ok){
+      winFeedback("✨ 計算正確！縮小完成！", 14);
+    } else {
+      loseFeedback(`❌ 不太對喔（正確是 ${toLabelF(expected)}${currentMission.unit}）`);
+    }
+  }
+
+  function usePotion(potion) {
+    if(isPaused) return;
+    if(currentMission && currentMission.mode === "ASK_RESULT") return;
+
+    const tier = getTier();
+
+    if(tier >= 4){
+      const remain = cooldown.get(potion.l) || 0;
+      if(remain > 0) return;
+      cooldown.set(potion.l, 1200);
+      startCooldownTicker();
+    }
+
+    spendEnergy();
+
+    const emoji = document.getElementById('item-emoji');
+    const label = document.getElementById('current-val');
+    const ruleLine = document.getElementById('rule-line');
+
+    const s = Math.max(0.12, Math.min(1.2, toNumF(potion.f) * 1.2));
+    emoji.style.transform = `scale(${s})`;
+
+    if(currentMission.mode === "CHAIN2" && chainState){
+      chainState.currentFactorF = mulF(chainState.currentFactorF, potion.f);
+      chainState.stepsLeft -= 1;
+
+      const nowLabel = toLabelF(chainState.currentFactorF);
+      label.innerText = `🧪 目前總倍率：${nowLabel}`;
+      label.style.background = "#2d3436";
+
+      if(chainState.stepsLeft > 0){
+        ruleLine.innerText = `目前進度：第 ${2 - chainState.stepsLeft + 1} 次（剩 ${chainState.stepsLeft} 次）`;
+        setTimeout(()=>{ emoji.style.transform = "scale(1)"; }, 420);
+        return;
+      }
+
+      const ok = eqF(chainState.currentFactorF, currentMission.targetF);
+      if(ok) winFeedback("✨ 連鎖完美！森林超愛你", 18);
+      else loseFeedback(`❌ 不太對喔（正確總倍率是 ${toLabelF(currentMission.targetF)}）`);
+      return;
+    }
+
+    const expected = expectedFactorForMission(currentMission);
+    const ok = eqF(potion.f, expected);
+
+    if(ok){
+      const bonus = (currentMission.mode==="DIRECT") ? 10 :
+                    (currentMission.mode==="FIND_POTION") ? 14 : 16;
+      winFeedback("✨ 完美縮小！", bonus);
+    } else {
+      loseFeedback(`❌ 比例不對喔（正確是 ${toLabelF(expected)}）`);
+    }
+  }
+
+  function winFeedback(msg, addScore){
+    if(roundLeft <= 0) return;
+
+    const label = document.getElementById('current-val');
+    const emoji = document.getElementById('item-emoji');
+
+    const timeBonus = speedBonus();
+    score += (addScore + timeBonus);
+    document.getElementById('score').innerText = score;
+    setLevelName();
+
+    label.innerText = msg;
+    label.style.background = "#2ecc71";
+
+    emoji.style.transform = "scale(0.2)";
+    setTimeout(()=>{ emoji.style.transform = "scale(1.05)"; }, 160);
+
+    if(score === 30 || score === 70 || score === 120 || score === 140){
+      energy = Math.min(30, energy + 4);
+      updateEnergyUI();
+    }
+
+    setTimeout(() => { newMission(); }, 1100);
+  }
+
+  function loseFeedback(msg){
+    const label = document.getElementById('current-val');
+    const emoji = document.getElementById('item-emoji');
+
+    label.innerText = msg;
+    label.style.background = "#ff7675";
+
+    setTimeout(() => {
+      emoji.style.transform = "scale(1)";
+      const baseLabel = toLabelF(currentMission.baseF);
+      if(currentMission.mode === "FIX_ONE"){
+        label.innerText = `🧩 目前倍率：${toLabelF(currentMission.wrongF)}（再噴一次）`;
+      } else {
+        label.innerText = `${baseLabel}${currentMission.unit}`;
+      }
+      label.style.background = "#2d3436";
+    }, 900);
+  }
+
+  /* ===== 倒數計時（60 秒） ===== */
+  function updateTimerUI(){
+    document.getElementById("timer").innerText = String(roundLeft);
+  }
+
+  function startRoundTimer(){
+    clearInterval(roundTimer);
+    roundTimer = setInterval(() => {
+      if(isPaused) return;
+      roundLeft = Math.max(0, roundLeft - 1);
+      updateTimerUI();
+      if(roundLeft <= 0){
+        endRound();
+      }
+    }, 1000);
+  }
+
+  function endRound(){
+    clearInterval(roundTimer);
+    roundTimer = null;
+
+    saveRank();
+
+    isPaused = true;
+    syncCooldownUI();
+
+    const label = document.getElementById('current-val');
+    label.innerText = "⏰ 時間到！已結算並寫入排行榜";
+    label.style.background = "#2d3436";
+
+    openRank();
+  }
+
+  /* ===== 排行榜（本機 localStorage） ===== */
+  const RANK_KEY = "JM_RANKING_V1";
+
+  function loadRank(){
+    try{
+      const raw = localStorage.getItem(RANK_KEY);
+      if(!raw) return [];
+      const arr = JSON.parse(raw);
+      if(!Array.isArray(arr)) return [];
+      return arr.filter(x => x && typeof x.name==="string" && typeof x.score==="number");
+    }catch(e){
+      return [];
+    }
+  }
+
+  function saveRank(){
+    const name = (localStorage.getItem("JM_PLAYER_NAME") || "匿名").trim() || "匿名";
+    const list = loadRank();
+    list.push({ name, score, ts: Date.now() });
+    list.sort((a,b)=> b.score - a.score || a.ts - b.ts);
+    const top10 = list.slice(0,10);
+    localStorage.setItem(RANK_KEY, JSON.stringify(top10));
+  }
+
+  function renderRank(){
+    const list = loadRank();
+    const ul = document.getElementById("rankList");
+    ul.innerHTML = "";
+
+    if(list.length === 0){
+      ul.innerHTML = `<li class="rank-item">
+        <div class="rank-left">
+          <div class="rank-no">—</div>
+          <div class="rank-name">目前還沒有紀錄</div>
+        </div>
+        <div class="rank-right"><span class="rank-pill">滿意度 0</span></div>
+      </li>`;
+      return;
+    }
+
+    list.forEach((r, idx)=>{
+      const li = document.createElement("li");
+      li.className = "rank-item";
+      li.innerHTML = `
+        <div class="rank-left">
+          <div class="rank-no">${idx+1}</div>
+          <div class="rank-name">${escapeHtml(r.name)}</div>
+        </div>
+        <div class="rank-right">
+          <span class="rank-pill">滿意度 ${r.score}</span>
+        </div>
+      `;
+      ul.appendChild(li);
+    });
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, (c)=>({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[c]));
+  }
+
+  function openRank(){
+    renderRank();
+    const mask = document.getElementById("rankMask");
+    mask.classList.add("show");
+    mask.setAttribute("aria-hidden","false");
+  }
+  function closeRank(){
+    const mask = document.getElementById("rankMask");
+    mask.classList.remove("show");
+    mask.setAttribute("aria-hidden","true");
+  }
+
+  /* ===== 暫停 / 繼續 ===== */
+  function setPaused(next){
+    isPaused = next;
+    const pm = document.getElementById("pauseMask");
+    if(isPaused){
+      pm.classList.add("show");
+      pm.setAttribute("aria-hidden","false");
+    }else{
+      pm.classList.remove("show");
+      pm.setAttribute("aria-hidden","true");
+      missionStartTs = Date.now();
+    }
+    syncCooldownUI();
+  }
+
+  /* ===== 重來（清空本局：分數/能量/時間，名字保留） ===== */
+  function restartRound(){
+    isPaused = false;
+    closeRank();
+    document.getElementById("pauseMask").classList.remove("show");
+
+    score = 0;
+    energy = window.matchMedia("(max-width: 420px)").matches ? 10 : 12;
+    cooldown = new Map();
+    chainState = null;
+    currentMission = null;
+
+    roundLeft = ROUND_SECONDS;
+    updateTimerUI();
+    startRoundTimer();
+
+    document.getElementById('score').innerText = score;
+    setLevelName();
+    updateEnergyUI();
+    renderPotions();
+    syncCooldownUI();
+
+    newMission();
+  }
+
+  /* ===== 第一頁：強制輸入名字 ===== */
+  function randName(){
+    const poolA = ["星光","月亮","森林","橡果","藥劑","微縮","羅盤","樹洞","薄荷","雲朵","松果","青苔"];
+    const poolB = ["01","07","12","18","23","27","33","44","58","66","70","88"];
+    return poolA[Math.floor(Math.random()*poolA.length)] + poolB[Math.floor(Math.random()*poolB.length)];
+  }
+
+  function showStartScreen(){
+    document.getElementById("start-screen").classList.add("show");
+    document.getElementById("game-screen").classList.remove("show");
+
+    const input = document.getElementById("playerNameInput");
+    const btnStart = document.getElementById("startBtn");
+    const btnRand = document.getElementById("randomBtn");
+
+    const sync = () => {
+      const v = input.value.trim();
+      if(v.length > 0){
+        btnStart.classList.add("enabled");
+        btnStart.disabled = false;
+      } else {
+        btnStart.classList.remove("enabled");
+        btnStart.disabled = true;
+      }
+    };
+
+    btnStart.disabled = true;
+    sync();
+
+    btnRand.onclick = () => {
+      input.value = randName();
+      sync();
+      input.focus();
+    };
+
+    input.oninput = sync;
+    input.onkeydown = (e) => {
+      if(e.key === "Enter" && !btnStart.disabled) btnStart.click();
+    };
+
+    btnStart.onclick = () => {
+      const name = input.value.trim();
+      if(!name) return;
+      localStorage.setItem("JM_PLAYER_NAME", name);
+      startGameFlow();
+    };
+
+    setTimeout(()=>input.focus(), 80);
+  }
+
+  function startGameFlow(){
+    document.getElementById("start-screen").classList.remove("show");
+    document.getElementById("game-screen").classList.add("show");
+    initGame();
+  }
+
+  function initGame() {
+    const isSmall = window.matchMedia("(max-width: 420px)").matches;
+    energy = isSmall ? 10 : 12;
+
+    document.getElementById('score').innerText = score;
+    setLevelName();
+    renderPotions();
+    updateEnergyUI();
+
+    document.getElementById('submit-btn').addEventListener('click', submitResultAnswer);
+    document.getElementById('answer-input').addEventListener('keydown', (e)=>{
+      if(e.key === "Enter") submitResultAnswer();
+    });
+
+    document.getElementById("rankBtn").addEventListener("click", ()=>{
+      openRank();
+    });
+    document.getElementById("rankClose").addEventListener("click", closeRank);
+    document.getElementById("rankMask").addEventListener("click", (e)=>{
+      if(e.target.id === "rankMask") closeRank();
+    });
+
+    document.getElementById("pauseBtn").addEventListener("click", ()=>{
+      setPaused(true);
+    });
+    document.getElementById("resumeBtn").addEventListener("click", ()=>{
+      setPaused(false);
+    });
+    document.getElementById("pauseMask").addEventListener("click", (e)=>{
+      if(e.target.id === "pauseMask") setPaused(false);
+    });
+
+    document.getElementById("restartBtn").addEventListener("click", ()=>{
+      restartRound();
+    });
+
+    roundLeft = ROUND_SECONDS;
+    updateTimerUI();
+    startRoundTimer();
+
+    syncCooldownUI();
+    newMission();
+  }
+
+  window.onload = () => {
+    showStartScreen();
+  };
+</script>
+
+</body>
+</html>
+
+
+
+
