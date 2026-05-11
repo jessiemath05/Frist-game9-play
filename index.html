@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jessie Math捷析 - 能量球縮小</title>
+    
+    <!-- ✅ 快取連結預覽 -->
+    <meta name="description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+    <!-- ✅ LINE / FB 預覽用 -->
+    <meta property="og:title" content="Jessie Math捷析 - 能量球縮小">
+    <meta property="og:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+    <meta property="og:type" content="website">
+    
+    <!-- ✅ 預覽圖片-->
+    <meta property="og:image" content="g5-u9-2.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1536">
+    <meta property="og:image:alt" content="Jessie Math 遊戲封面">
+    
+    <!-- ✅ 有些平台會參考 -->
+    <link rel="image_src" href=" g5-u9-2.png ">
+    
+    <!-- ✅ Twitter / X（可用同一張圖） -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jessie Math捷析 - 能量球縮小">
+    <meta name="twitter:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+    <meta name="twitter:image" content=" g5-u9-2.png ">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+
+        :root {
+            --primary-purple: #4a00e0;
+            --dark-space: #0f0518;
+            --neon-blue: #00f2fe;
+            --neon-pink: #ff0844;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background: url('jessie-logo-play.jpg') top left / cover no-repeat fixed var(--dark-space);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #f39c12;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand span {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: 1px solid #3498db;
+            color: #3498db;
+            background: white;
+        }
+
+        .nav-btn:hover {
+            background: #f0f8ff;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.back-btn {
+            border-color: #8e44ad;
+            color: #8e44ad;
+            background: #f9f0ff;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #start-screen, #end-screen {
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+        }
+
+        .title-glitch {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--primary-purple);
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group input {
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: 2px solid var(--neon-blue);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            text-align: center;
+            width: 60%;
+            outline: none;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, var(--primary-purple), var(--neon-blue));
+            border: none;
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--neon-blue);
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0,0,0,0.4);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .leaderboard th, .leaderboard td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .leaderboard th {
+            background: rgba(74, 0, 224, 0.5);
+            color: #00f2fe;
+        }
+
+        /* Game Screen */
+        #game-area {
+            flex: 1;
+            position: relative;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
+
+        /* Central Station */
+        .j-station {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0,242,254,0.3) 0%, rgba(74,0,224,0.8) 100%);
+            border-radius: 50% 50% 10% 10%;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 40px var(--neon-blue), inset 0 0 20px var(--primary-purple);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        /* 新增：核心旁邊的小倒數徽章 */
+        .core-timer-badge {
+            position: absolute;
+            top: -10px;
+            right: -25px;
+            background: rgba(0, 0, 0, 0.85);
+            color: #00f2fe;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 2px solid #00f2fe;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: monospace;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            z-index: 15;
+            transition: all 0.2s;
+        }
+
+        @keyframes core-blink {
+            0%, 100% { 
+                box-shadow: 0 0 20px var(--neon-blue), inset 0 0 15px var(--neon-blue);
+                text-shadow: 0 0 10px var(--neon-blue);
+                border-color: var(--neon-blue);
+                opacity: 1;
+            }
+            50% { 
+                box-shadow: 0 0 5px rgba(0, 242, 254, 0.3), inset 0 0 5px rgba(0, 242, 254, 0.3);
+                text-shadow: none;
+                border-color: rgba(255, 255, 255, 0.3);
+                opacity: 0.8;
+            }
+        }
+
+        .core-dropzone {
+            width: 80px;
+            height: 80px;
+            border: 2px dashed rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255,255,255,0.9);
+            background: rgba(0,0,0,0.4);
+            transition: all 0.3s;
+            animation: core-blink 1.5s infinite; 
+        }
+
+        .fraction-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+        
+        .fraction-display .denom {
+            border-top: 2px solid white;
+            width: 100%;
+            text-align: center;
+        }
+
+        @keyframes timer-blink {
+            0%, 100% { color: #ff0844; border-color: #ff0844; box-shadow: 0 0 15px #ff0844; transform: scale(1.1); }
+            50% { color: #ffffff; border-color: rgba(255, 255, 255, 0.5); box-shadow: none; transform: scale(1); }
+        }
+        
+        .timer-blink {
+            animation: timer-blink 0.5s infinite !important;
+        }
+
+        /* Enemy Energy Balls */
+        .energy-ball {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px black;
+            transition: opacity 0.5s;
+            box-shadow: 0 0 20px currentColor;
+            z-index: 5;
+            cursor: crosshair;
+        }
+
+        .energy-ball:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px currentColor, inset 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        @keyframes magnify-fade {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 1; text-shadow: 0 0 20px #00ff00; box-shadow: 0 0 50px #00ff00; border-color: #00ff00; color: #00ff00; }
+            100% { transform: scale(2); opacity: 0; text-shadow: 0 0 20px #00ff00; box-shadow: 0 0 50px #00ff00; border-color: transparent; color: transparent; }
+        }
+        .magnify-effect {
+            animation: magnify-fade 0.5s forwards !important;
+            pointer-events: none;
+        }
+
+        @keyframes smoke-fade {
+            0% { filter: blur(0px); opacity: 1; transform: scale(1); background: rgba(0,0,0,0.8); }
+            50% { box-shadow: 0 0 40px #ff0000; border-color: #ff0000; color: #ff0000; background: rgba(255,0,0,0.3); }
+            100% { filter: blur(10px); opacity: 0; transform: scale(1.5); background: rgba(255,0,0,0.5); border-color: transparent; color: transparent; box-shadow: 0 0 50px #ff0000; }
+        }
+        .smoke-effect {
+            animation: smoke-fade 0.5s forwards !important;
+            pointer-events: none;
+        }
+
+        @keyframes bounce-fade {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            30% { transform: translateY(-40px) scale(1.1); opacity: 1; box-shadow: 0 0 40px #ffff00; border-color: #ffff00; color: #ffff00; text-shadow: 0 0 10px #ffff00; }
+            60% { transform: translateY(0) scale(1); opacity: 0.8; box-shadow: 0 0 20px #ffff00; border-color: #ffff00; color: #ffff00; }
+            100% { transform: translateY(20px) scale(0.9); opacity: 0; box-shadow: none; border-color: transparent; color: transparent; }
+        }
+        .bounce-effect {
+            animation: bounce-fade 0.6s forwards !important;
+            pointer-events: none;
+        }
+
+        .shield {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.8);
+            width: 110%;
+            height: 110%;
+            animation: rotate 4s linear infinite;
+            pointer-events: none;
+        }
+
+        .shield.outer {
+            width: 130%;
+            height: 130%;
+            border: 3px dashed rgba(255,255,255,0.5);
+            animation: rotate 6s linear infinite reverse;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        /* Game UI */
+        .game-ui-top {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+            z-index: 20;
+        }
+        
+        .ui-box {
+            background: rgba(0,0,0,0.6);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--neon-blue);
+            font-size: 18px;
+            pointer-events: auto;
+        }
+
+        .side-buttons {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 20;
+        }
+
+        .control-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--neon-blue);
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .control-btn:hover { background: rgba(0,242,254,0.3); }
+
+        .sound-toggle {
+            position: absolute;
+            left: 20px;
+            bottom: 120px;
+            z-index: 20;
+        }
+
+        /* Laser Beam & Math Equation */
+        .laser {
+            position: absolute;
+            width: 4px;
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px white;
+            transform-origin: top left;
+            z-index: 15;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+
+        .floating-math {
+            position: absolute;
+            color: #fff;
+            font-size: 32px;
+            font-weight: 900;
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--primary-purple);
+            animation: floatUp 1.5s forwards;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+        }
+
+        /* Overlay */
+        #pause-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 50;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #pause-overlay h2 { font-size: 40px; color: var(--neon-blue); }
+
+        .badge-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 20px auto;
+            border-radius: 50%; 
+            box-shadow: 0 0 20px gold;
+        }
+
+        .end-btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* 頁尾子彈型樣式 */
+        .custom-footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            pointer-events: none; 
+        }
+        
+        .footer-pill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px 25px;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            color: white;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .footer-left, .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        .footer-icon {
+            color: #f39c12;
+            font-size: 14px;
+        }
+
+        .footer-copy, .footer-tagline {
+            opacity: 0.9;
+        }
+
+        /* --- RWD 響應式設定 --- */
+        #orientation-warning {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--dark-space); z-index: 99999;
+            color: white; justify-content: center; align-items: center; flex-direction: column; text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #orientation-warning i { font-size: 60px; color: var(--neon-blue); margin-bottom: 20px; animation: rotate 2s infinite ease-in-out alternate; }
+        #orientation-warning h2 { margin-bottom: 10px; }
+
+        /* 手機直向時強制顯示轉向警告 (寬度小於768px 代表手機) */
+        @media screen and (max-width: 767px) and (orientation: portrait) {
+            #orientation-warning { display: flex; }
+            body > *:not(#orientation-warning) { display: none !important; }
+        }
+
+        /* 小螢幕調整 (含平板與手機橫向) */
+        @media screen and (max-width: 900px) {
+            .navbar { padding: 5px 15px; }
+            .brand span { font-size: 18px; }
+            .nav-btn { padding: 6px 12px; font-size: 14px; }
+            .panel { width: 95%; padding: 20px; }
+            .title-glitch { font-size: 32px; }
+            .ui-box { font-size: 14px; padding: 5px 10px; }
+            .j-station { bottom: 90px; width: 120px; height: 120px; }
+            .core-dropzone { width: 60px; height: 60px; font-size: 20px; }
+            .fraction-display { font-size: 22px; }
+            .side-buttons { right: 10px; gap: 10px; }
+            .control-btn { width: 50px; height: 50px; font-size: 18px; padding: 10px; }
+            .sound-toggle { bottom: 90px; left: 10px; }
+            .custom-footer { bottom: 10px; }
+            .footer-pill { padding: 6px 15px; font-size: 11px; gap: 10px;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 手機直向轉向提示 -->
+    <div id="orientation-warning">
+        <i class="fas fa-mobile-alt"></i>
+        <h2>請旋轉您的設備</h2>
+        <p>為了獲得最佳遊戲體驗，請將您的手機轉為橫向。</p>
+    </div>
+
+    <nav class="navbar">
+        <div class="brand">
+            <div class="logo-wrapper">
+                <img src="JESSIEMATH-Q.png" alt="Logo" onerror="this.src='https://via.placeholder.com/50?text=J'">
+            </div>
+            <span>Jessie Math捷析</span>
+        </div>
+        <div class="nav-links">
+            <a href="https://jessiemath0703-chu.github.io/website2/" class="nav-btn"><i class="fas fa-home"></i> 首頁</a>
+            <a href="https://jessiemath0703-chu.github.io/Game-Lobby/" class="nav-btn"><i class="fas fa-gamepad"></i> 遊戲大廳</a>
+            <a href="https://jessiemath0703-chu.github.io/Game-Lobby/#g5-u9" class="nav-btn back-btn"><i class="fas fa-undo"></i> G5乘以幾分之一</a>
+        </div>
+    </nav>
+
+    <div id="start-screen" class="screen active">
+        <div class="panel">
+            <div class="title-glitch">能量球縮小</div>
+            <p>五年級第九單元：乘以幾分之一<br>系統核心會自動變換分數！請找出畫面上可以被核心分數縮小(整除)的能量球！<br>
+                <b>注意：漏掉正確能量球，或點擊了錯誤的能量球，都會扣除收集數！限時 90 秒，目標收集 15 顆以上！</b></p>
+            
+            <div class="input-group">
+                <input type="text" id="player-name" placeholder="請輸入指揮官名稱" autocomplete="off">
+            </div>
+            
+            <button class="start-btn" onclick="startGame()">開始任務</button>
+
+            <table class="leaderboard">
+                <thead>
+                    <tr>
+                        <th>名次</th>
+                        <th>玩家</th>
+                        <th>分數/目標數</th>
+                        <th>狀態</th>
+                        <th>日期/時間</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div class="game-ui-top">
+            <div class="ui-box">時間: <span id="time-display">90</span>s</div>
+            <div class="ui-box">進度: <span id="score-display">0</span> / 15</div>
+            <div class="ui-box">連擊: <span id="combo-display">0</span></div>
+        </div>
+
+        <div id="game-area">
+            <div class="j-station">
+                <!-- 核心區塊，由系統自動變換 -->
+                <div class="core-dropzone" id="core">
+                    <div class="fraction-display">
+                        <span>1</span><span class="denom">2</span>
+                    </div>
+                </div>
+                <!-- 移至核心旁邊的小徽章倒數 -->
+                <div id="core-timer-badge" class="core-timer-badge">15s</div>
+            </div>
+        </div>
+
+        <div class="side-buttons">
+            <button class="control-btn" onclick="togglePause()" title="暫停"><i class="fas fa-pause"></i></button>
+            <button class="control-btn" onclick="restartGame()" title="重來"><i class="fas fa-redo"></i></button>
+            <button class="control-btn" onclick="goToHome()" title="主選單"><i class="fas fa-bars"></i></button>
+        </div>
+
+        <button class="control-btn sound-toggle" onclick="toggleSound()" id="sound-btn">
+            <i class="fas fa-volume-up"></i>
+        </button>
+
+        <div id="pause-overlay">
+            <h2>系統暫停中</h2>
+            <p>已遮蔽題庫以防止作弊</p>
+            <button class="start-btn" onclick="togglePause()">繼續任務</button>
+        </div>
+    </div>
+
+    <div id="end-screen" class="screen">
+        <div class="panel" id="end-panel">
+            <h1 class="title-glitch" id="end-title">任務完成！</h1>
+            
+            <!-- 成功時顯示徽章 -->
+            <img src="勳章徽章9.jpg" alt="過關徽章" class="badge-img" id="end-badge" style="display: none;" onerror="this.src='https://via.placeholder.com/150?text=Badge'">
+            
+            <!-- 失敗時顯示鼓勵詞 -->
+            <h2 id="fail-msg" style="color: var(--neon-pink); display: none; margin: 20px 0;">加油！不要灰心，再試一次一定能成功！</h2>
+
+            <p id="end-stats">答對題數: 0 / 15</p>
+            
+            <div class="end-btn-group">
+                <button class="start-btn" onclick="restartGame()">再挑戰一次</button>
+                <button class="start-btn" onclick="goToHome()">主選單</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgm" src="1.mp3" loop></audio>
+
+    <script>
+        // --- 遊戲狀態與變數 ---
+        let playerName = "";
+        let timer = 90;
+        let timeInterval;
+        let gameLoopInterval;
+        let spawnTimeoutId;
+        let isPaused = false;
+        let isSoundOn = true;
+        let score = 0;
+        let totalQuestions = 15; 
+        let combo = 0;
+        
+        let enemies = [];
+        const gameArea = document.getElementById('game-area');
+        
+        // 題庫分母陣列 (擴充變化)
+        const possibleDenominators = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20];
+        let currentDenom = 2;
+        let coreTimer = 15; 
+        
+        // 用於確保同一輪（同一個核心數字）期間出現的數字不重複洗牌機制
+        let usedNumbersInRound = new Set();
+
+        // --- 音效建立 ---
+        let audioCtx;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            } else if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playTone(freq, type, duration) {
+            if (!isSoundOn || !audioCtx) return;
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.type = type;
+            oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.start();
+            gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+            oscillator.stop(audioCtx.currentTime + duration);
+        }
+
+        function soundShoot() { playTone(600, 'sine', 0.1); playTone(800, 'sine', 0.2); }
+        function soundWin() { playTone(523.25, 'sine', 0.2); setTimeout(()=>playTone(659.25, 'sine', 0.2), 200); setTimeout(()=>playTone(783.99, 'sine', 0.4), 400); }
+        function soundReload() { playTone(400, 'square', 0.1); }
+        function soundError() { playTone(150, 'sawtooth', 0.4); }
+
+        function soundHitRight() { 
+            if (!isSoundOn || !audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.3);
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            osc.start();
+            gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function soundHitWrong() { 
+            if (!isSoundOn || !audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.4);
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            osc.start();
+            gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+            osc.stop(audioCtx.currentTime + 0.4);
+        }
+
+        function soundDropMiss() { 
+            if (!isSoundOn || !audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 0.1);
+            osc.frequency.linearRampToValueAtTime(200, audioCtx.currentTime + 0.2);
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            osc.start();
+            gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+            osc.stop(audioCtx.currentTime + 0.2);
+        }
+
+        // --- 初始化頁面 ---
+        window.onload = () => {
+            loadLeaderboard();
+        };
+
+        function switchScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // --- 核心變換邏輯 ---
+        function changeCoreFraction() {
+            if(isPaused) return;
+            let options = possibleDenominators.filter(d => d !== currentDenom);
+            currentDenom = options[Math.floor(Math.random() * options.length)];
+            
+            // 清空該輪已使用數字池，達成洗牌與不重複
+            usedNumbersInRound.clear();
+
+            coreTimer = Math.floor(Math.random() * 6) + 12; 
+            
+            document.getElementById('core').innerHTML = `
+                <div class="fraction-display">
+                    <span>1</span><span class="denom">${currentDenom}</span>
+                </div>
+            `;
+            
+            let timerBadge = document.getElementById('core-timer-badge');
+            timerBadge.innerText = coreTimer + 's';
+            timerBadge.classList.remove('timer-blink');
+            
+            soundReload();
+        }
+
+        // --- 遊戲控制邏輯 ---
+        function startGame() {
+            playerName = document.getElementById('player-name').value.trim();
+            if (!playerName) {
+                alert("請先輸入指揮官名稱！");
+                return;
+            }
+            
+            initAudio();
+            
+            // ✅ 開始播放背景音樂
+            let bgm = document.getElementById('bgm');
+            bgm.play().catch(e => console.log('BGM play failed:', e));
+            bgm.muted = !isSoundOn;
+            
+            clearInterval(timeInterval);
+            clearInterval(gameLoopInterval);
+            clearTimeout(spawnTimeoutId);
+            
+            score = 0;
+            combo = 0;
+            timer = 90; 
+            
+            enemies.forEach(e => {
+                if (e.el && e.el.parentNode) e.el.parentNode.removeChild(e.el);
+            });
+            enemies = [];
+            isPaused = false;
+            
+            changeCoreFraction(); 
+            updateUI();
+            switchScreen('game-screen');
+            
+            timeInterval = setInterval(() => {
+                if(!isPaused) {
+                    timer--;
+                    
+                    coreTimer--;
+                    let timerBadge = document.getElementById('core-timer-badge');
+                    timerBadge.innerText = coreTimer + 's';
+                    
+                    if (coreTimer <= 5 && coreTimer > 0) {
+                        timerBadge.classList.add('timer-blink');
+                    } else {
+                        timerBadge.classList.remove('timer-blink');
+                    }
+
+                    if(coreTimer <= 0) {
+                        changeCoreFraction();
+                    }
+
+                    updateUI();
+                    
+                    if(timer <= 0) {
+                        endGame(score >= totalQuestions);
+                    }
+                }
+            }, 1000);
+
+            gameLoopInterval = setInterval(gameLoop, 50);
+            spawnEnemy(); 
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            document.getElementById('pause-overlay').style.display = isPaused ? 'flex' : 'none';
+        }
+
+        function restartGame() { startGame(); }
+
+        function goToHome() {
+            clearInterval(timeInterval);
+            clearInterval(gameLoopInterval);
+            clearTimeout(spawnTimeoutId);
+            
+            // ✅ 暫停並重置背景音樂
+            let bgm = document.getElementById('bgm');
+            if(bgm) {
+                bgm.pause();
+                bgm.currentTime = 0;
+            }
+
+            switchScreen('start-screen');
+            loadLeaderboard();
+        }
+
+        function toggleSound() {
+            isSoundOn = !isSoundOn;
+            document.getElementById('sound-btn').innerHTML = isSoundOn ? '<i class="fas fa-volume-up"></i>' : '<i class="fas fa-volume-mute"></i>';
+            
+            // ✅ 同步背景音樂的靜音狀態
+            let bgm = document.getElementById('bgm');
+            if(bgm) {
+                bgm.muted = !isSoundOn;
+            }
+        }
+
+        // --- 敵人生成邏輯 ---
+        function spawnEnemy() {
+            // 小螢幕敵人數量稍微調低以防擁擠
+            let maxE = window.innerWidth < 768 ? 6 : 12;
+            let currentMaxEnemies = Math.floor(Math.random() * 4) + maxE; 
+            
+            if (isPaused || enemies.length >= currentMaxEnemies) {
+                spawnTimeoutId = setTimeout(spawnEnemy, 1000);
+                return;
+            }
+
+            let rand = Math.random();
+            let isBoss = rand > 0.8 && score > 3; 
+            let color = isBoss ? '#ff0844' : '#00f2fe';
+            
+            let val;
+            let isUnique = false;
+            let attempts = 0;
+            
+            // 擴展題庫變化並確保不重複
+            do {
+                if (Math.random() < 0.6) { // 60% 機率產生正確（可整除）的數字
+                    // 數字變化範圍擴大
+                    let multiplier = Math.floor(Math.random() * 30) + 2; 
+                    if(isBoss) multiplier *= (Math.floor(Math.random() * 3) + 2);
+                    val = multiplier * currentDenom;
+                } else { // 40% 機率產生干擾數字
+                    let randomD = possibleDenominators[Math.floor(Math.random() * possibleDenominators.length)];
+                    let multiplier = Math.floor(Math.random() * 25) + 2; 
+                    val = multiplier * randomD;
+                }
+                
+                // 防呆：如果是干擾數字卻剛好可被整除，就重骰
+                if (Math.random() >= 0.6 && val % currentDenom === 0) continue;
+                
+                // 檢查是否與「現有畫面上的能量球」或「本輪已出現過的數字」重複
+                let onScreen = enemies.some(e => e.val === val && !e.isDead);
+                let alreadyUsed = usedNumbersInRound.has(val);
+                
+                isUnique = !onScreen && !alreadyUsed;
+                attempts++;
+            } while (!isUnique && attempts < 50);
+
+            // 如果很衰50次都找不到唯一的，就強制生一個沒在畫面上的即可(放棄本輪不重複規則以防卡死)
+            if(!isUnique) {
+                 do {
+                     val = (Math.floor(Math.random() * 30) + 2) * currentDenom;
+                 } while(enemies.some(e => e.val === val && !e.isDead));
+            }
+            
+            // 紀錄本輪已使用數字
+            usedNumbersInRound.add(val);
+
+            let enemyEl = document.createElement('div');
+            enemyEl.className = 'energy-ball';
+            
+            // 針對小螢幕微調尺寸
+            let baseSize = window.innerWidth < 768 ? 60 : 80;
+            let size = isBoss ? baseSize * 1.3 : baseSize;
+            
+            enemyEl.style.width = size + 'px';
+            enemyEl.style.height = size + 'px';
+            enemyEl.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            enemyEl.style.border = `2px solid ${color}`;
+            enemyEl.style.color = color;
+            enemyEl.style.fontSize = window.innerWidth < 768 ? '20px' : '28px';
+            
+            enemyEl.innerHTML = `${val}`;
+            if(isBoss) {
+                enemyEl.innerHTML += `<div class="shield"></div><div class="shield outer"></div>`;
+            }
+
+            let maxX = window.innerWidth - size;
+            let startX = Math.random() * maxX;
+            enemyEl.style.left = startX + 'px';
+            enemyEl.style.top = '-150px';
+
+            gameArea.appendChild(enemyEl);
+
+            let dropTimeSec = Math.random() * 5 + 10; 
+            if(isBoss) dropTimeSec += 3; 
+            let fps = 1000 / 50; 
+            let totalFrames = dropTimeSec * fps;
+            let estimatedDistance = window.innerHeight + 150;
+            let calculatedSpeed = estimatedDistance / totalFrames;
+
+            let enemyDataObj = {
+                el: enemyEl,
+                val: val,
+                x: startX,
+                y: -150,
+                speed: calculatedSpeed, 
+                isBoss: isBoss,
+                shields: isBoss ? 2 : 0,
+                size: size,
+                color: color,
+                isDead: false
+            };
+            enemies.push(enemyDataObj);
+
+            enemyEl.onclick = (e) => {
+                e.stopPropagation(); 
+                if(!isPaused) fireLaserAt(enemyDataObj);
+            };
+
+            spawnTimeoutId = setTimeout(spawnEnemy, Math.random() * 1000 + 800);
+        }
+
+        // --- 遊戲主迴圈 ---
+        function gameLoop() {
+            if(isPaused) return;
+            
+            let coreTop = document.getElementById('core').getBoundingClientRect().top;
+            
+            for(let i = enemies.length - 1; i >= 0; i--) {
+                let e = enemies[i];
+                if(e.isDead) continue;
+                
+                if (e.y > (coreTop * 0.7)) {
+                    e.speed *= 1.02; 
+                }
+                
+                e.y += e.speed;
+                e.el.style.top = e.y + 'px';
+
+                // 掉落到底部
+                if(e.el.getBoundingClientRect().bottom >= coreTop) {
+                    if (e.val % currentDenom === 0) {
+                        score = Math.max(0, score - 1);
+                        combo = 0;
+                        soundDropMiss(); 
+                        
+                        e.isDead = true;
+                        e.el.classList.add('bounce-effect');
+                        
+                        let deadEl = e.el;
+                        setTimeout(() => {
+                            if(deadEl && deadEl.parentNode) deadEl.parentNode.removeChild(deadEl);
+                        }, 600); 
+                        
+                        enemies.splice(i, 1);
+                        updateUI();
+                    } else {
+                        if(e.el.parentNode) e.el.parentNode.removeChild(e.el);
+                        enemies.splice(i, 1);
+                    }
+                }
+            }
+        }
+
+        // --- 發射射擊與邏輯計算 ---
+        function fireLaserAt(target) {
+            if(isPaused || target.isDead) return;
+            soundShoot();
+
+            let coreRect = document.getElementById('core').getBoundingClientRect();
+            let targetRect = target.el.getBoundingClientRect();
+            
+            let startX = coreRect.left + coreRect.width / 2;
+            let startY = coreRect.top + coreRect.height / 2;
+            let endX = targetRect.left + targetRect.width / 2;
+            let endY = targetRect.top + targetRect.height / 2;
+
+            let length = Math.hypot(endX - startX, endY - startY);
+            let angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+
+            let laser = document.createElement('div');
+            laser.className = 'laser';
+            laser.style.height = length + 'px';
+            laser.style.left = startX + 'px';
+            laser.style.top = startY + 'px';
+            laser.style.transform = `rotate(${angle - 90}deg)`; 
+            
+            gameArea.appendChild(laser);
+            setTimeout(() => laser.remove(), 200);
+
+            // 檢定
+            if (target.val % currentDenom === 0) {
+                soundHitRight(); // 咚
+                let result = target.val / currentDenom;
+                
+                showMathEquation(`${target.val} × 1/${currentDenom} = ${result}`, endX, endY);
+                target.val = result;
+                
+                if(target.isBoss && target.shields > 0) {
+                    target.shields--;
+                    target.el.innerHTML = target.val + (target.shields === 1 ? `<div class="shield"></div>` : '');
+                    target.size *= 0.75;
+                    target.el.style.width = target.size + 'px';
+                    target.el.style.height = target.size + 'px';
+                } else {
+                    combo++;
+                    score++;
+                    updateUI();
+                    
+                    target.isDead = true;
+                    target.el.classList.add('magnify-effect');
+                    let deadEl = target.el;
+                    setTimeout(() => {
+                        if(deadEl && deadEl.parentNode) deadEl.parentNode.removeChild(deadEl);
+                    }, 500);
+                    
+                    enemies = enemies.filter(e => e !== target);
+                }
+            } else {
+                // 點錯
+                soundHitWrong(); // 咻
+                combo = 0;
+                score = Math.max(0, score - 1); 
+                updateUI();
+                
+                target.isDead = true;
+                target.el.classList.add('smoke-effect');
+                let deadEl = target.el;
+                setTimeout(() => {
+                    if(deadEl && deadEl.parentNode) deadEl.parentNode.removeChild(deadEl);
+                }, 500);
+                
+                enemies = enemies.filter(e => e !== target);
+            }
+        }
+
+        function showMathEquation(text, x, y) {
+            let div = document.createElement('div');
+            div.className = 'floating-math';
+            div.innerText = text;
+            div.style.left = (x - 100) + 'px';
+            div.style.top = y + 'px';
+            if (window.innerWidth < 768) div.style.fontSize = '24px';
+            gameArea.appendChild(div);
+            setTimeout(() => div.remove(), 1500);
+        }
+
+        function updateUI() {
+            document.getElementById('time-display').innerText = timer;
+            document.getElementById('score-display').innerText = score;
+            document.getElementById('combo-display').innerText = combo;
+        }
+
+        // --- 結算與排行榜 ---
+        function endGame(isWin) {
+            clearInterval(timeInterval);
+            clearInterval(gameLoopInterval);
+            clearTimeout(spawnTimeoutId);
+            
+            // ✅ 遊戲結束時暫停背景音樂，避免干擾音效
+            let bgm = document.getElementById('bgm');
+            if(bgm) {
+                bgm.pause();
+            }
+            
+            let statusStr = isWin ? "成功" : "失敗";
+            if(isWin) soundWin();
+            else soundError();
+
+            document.getElementById('end-title').innerText = isWin ? "任務完成！守護成功" : "時間到！任務失敗";
+            document.getElementById('end-title').style.color = isWin ? "var(--neon-blue)" : "var(--neon-pink)";
+            
+            document.getElementById('end-badge').style.display = isWin ? "block" : "none";
+            document.getElementById('fail-msg').style.display = isWin ? "none" : "block";
+
+            document.getElementById('end-stats').innerText = `最終收集進度: ${score} / ${totalQuestions}`;
+            
+            saveToLeaderboard(statusStr);
+            switchScreen('end-screen');
+        }
+
+        function saveToLeaderboard(status) {
+            let board = JSON.parse(localStorage.getItem('jessie_g5_leaderboard_new')) || [];
+            let now = new Date();
+            let dateStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+            
+            board.push({
+                name: playerName,
+                score: score,
+                total: totalQuestions,
+                timeLeft: timer,
+                status: status,
+                date: dateStr
+            });
+
+            board.sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                return b.timeLeft - a.timeLeft;
+            });
+            
+            board = board.slice(0, 10);
+            localStorage.setItem('jessie_g5_leaderboard_new', JSON.stringify(board));
+        }
+
+        function loadLeaderboard() {
+            let board = JSON.parse(localStorage.getItem('jessie_g5_leaderboard_new')) || [];
+            let tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = '';
+
+            const medals = ['🥇', '🥈', '🥉'];
+
+            board.forEach((record, index) => {
+                let rankIcon = index < 3 ? medals[index] : `🏅 ${index + 1}`;
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${rankIcon}</td>
+                    <td>${record.name}</td>
+                    <td>${record.score} / ${record.total}</td>
+                    <td style="color:${record.status==='成功'?'#00f2fe':'#ff0844'}">${record.status}</td>
+                    <td>${record.date}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+    
+    <!-- ✅ 子彈型頁尾區塊 -->
+    <footer class="custom-footer">
+        <div class="footer-pill">
+            <div class="footer-left">
+                <div class="footer-dot" aria-hidden="true"></div>
+                <div class="footer-copy">© 2025–2026 Jessie Math 捷析老師. All rights reserved.</div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-icon" aria-hidden="true"><i class="fas fa-compass"></i></div>
+                <div class="footer-tagline">數學不迷路，捷析Jessie帶你走向理解。</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
